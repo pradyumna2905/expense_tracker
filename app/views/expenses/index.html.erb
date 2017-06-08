@@ -13,7 +13,7 @@
       <tr>
         <td><%= expense.date %></td>
         <td><%= expense.description %></td>
-        <td>$<%= expense.amount %></td>
+        <td><%= number_to_currency(expense.amount) %></td>
       </tr>
     <% end %>
   </tbody>
