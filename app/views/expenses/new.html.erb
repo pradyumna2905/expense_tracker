@@ -1,1 +1,6 @@
-hi
+<%= simple_form_for @expense do |f| %>
+  <%= f.input :date, as: :date %>
+  <%= f.input :description %>
+  <%= f.input :amount %>
+  <%= f.button :submit %>
+<% end %>
