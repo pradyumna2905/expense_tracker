@@ -4,6 +4,7 @@ class CreateExpenses < ActiveRecord::Migration[5.0]
       t.datetime :date
       t.decimal :amount
       t.string :description
+      t.references :user, index: true, foreign_key: true
 
       t.timestamps
     end
