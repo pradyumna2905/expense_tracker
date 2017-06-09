@@ -47,8 +47,4 @@ class ExpensesController < ApplicationController
                              :description,
                              :user_id)
   end
-
-  def require_user
-    user_signed_in?
-  end
 end

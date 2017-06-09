@@ -1,5 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  helper_method :require_user
+
+  def require_user
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
+  end
 
   private
   # Overwriting the sign_out redirect path method
