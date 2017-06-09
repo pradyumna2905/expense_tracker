@@ -11,7 +11,7 @@
   <tbody>
     <% @user.expenses.each do |expense| %>
       <tr>
-        <td><%= expense.date %></td>
+        <td><%= formatted_date(expense.date) %></td>
         <td><%= expense.description %></td>
         <td><%= number_to_currency(expense.amount) %></td>
       </tr>
