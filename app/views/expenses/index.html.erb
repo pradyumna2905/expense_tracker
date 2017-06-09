@@ -18,6 +18,11 @@
         <td><%= expense.description %></td>
         <td><%= number_to_currency(expense.amount) %></td>
         <td><%= link_to "Edit", edit_expense_path(expense) %></td>
+        <td><%= link_to "[delete]", 
+          expense,
+          method: :delete,
+          data: {confirm: "Are you sure?"}
+          %></td>
       </tr>
     <% end %>
   </tbody>
