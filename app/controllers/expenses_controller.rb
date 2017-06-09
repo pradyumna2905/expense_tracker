@@ -21,6 +21,19 @@ class ExpensesController < ApplicationController
     @grand_total = @user.grand_total
   end
 
+  def edit
+    @expense = Expense.find(params[:id])
+  end
+
+  def update
+    @expense = Expense.find(params[:id])
+    if @expense.update(expense_params)
+      redirect_to expenses_path
+    else
+      render :edit
+    end
+  end
+
   private
 
   def expense_params
