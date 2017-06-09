@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'pages#home'
+
+  devise_scope :user do
+    root to: 'devise/registrations#new'
+  end
 
   resources :expenses
 end
