@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   def require_user
     unless user_signed_in?
+      flash[:danger] = "You need to be logged in to view your expenses!"
       redirect_to new_user_session_path
     end
   end
