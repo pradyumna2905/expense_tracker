@@ -1,6 +1,11 @@
-<%= simple_form_for @expense do |f| %>
-  <%= f.input :date, as: :date %>
-  <%= f.input :description %>
-  <%= f.input :amount %>
-  <%= f.button :submit %>
-<% end %>
+<div class="col-md-2 col-md-offset-5">
+  <%= simple_form_for @expense do |f| %>
+    <%= f.input :date, as: :date %>
+    <%= f.input :description %>
+    <%= f.input :amount %>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+</div>
