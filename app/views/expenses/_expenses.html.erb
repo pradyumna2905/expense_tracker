@@ -1,0 +1,26 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="col-md-1">Date</th>
+      <th class="col-md-8">Description</th>
+      <th>Amount</th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.expenses.each do |expense| %>
+      <tr>
+        <td><%= formatted_date(expense.date) %></td>
+        <td><%= expense.description %></td>
+        <td><%= number_to_currency(expense.amount) %></td>
+        <td><%= link_to inline_svg("edit.svg", title: 'Edit'), edit_expense_path(expense) %></td>
+        <td><%= link_to inline_svg("delete.svg", title: 'Delete'),
+          expense,
+          method: :delete,
+          data: {confirm: "Are you sure?"}
+          %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
