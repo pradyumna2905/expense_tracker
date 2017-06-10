@@ -17,8 +17,8 @@ class ExpensesController < ApplicationController
   end
 
   def index
-    @user = current_user
-    @grand_total = @user.grand_total
+    @expenses = current_user.expenses.page(params[:page])
+    @grand_total = current_user.grand_total
   end
 
   def edit
