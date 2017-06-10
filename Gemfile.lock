@@ -1,4 +1,21 @@
 GIT
+  remote: https://github.com/amatsuda/kaminari.git
+  revision: 4efe5fd2bde3e8688fca220f93d14558d080d811
+  specs:
+    kaminari (1.0.1)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.0.1)
+      kaminari-activerecord (= 1.0.1)
+      kaminari-core (= 1.0.1)
+    kaminari-actionview (1.0.1)
+      actionview
+      kaminari-core (= 1.0.1)
+    kaminari-activerecord (1.0.1)
+      activerecord
+      kaminari-core (= 1.0.1)
+    kaminari-core (1.0.1)
+
+GIT
   remote: https://github.com/stympy/faker.git
   revision: ebf26149bf63c0d079e01c98e5bc226e33edd437
   specs:
@@ -230,6 +247,7 @@ DEPENDENCIES
   inline_svg
   jbuilder (~> 2.5)
   jquery-rails
+  kaminari!
   listen (~> 3.0.5)
   pg
   pry

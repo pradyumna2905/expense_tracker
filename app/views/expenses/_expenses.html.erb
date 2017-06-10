@@ -9,7 +9,7 @@
   </thead>
 
   <tbody>
-    <% @user.expenses.each do |expense| %>
+    <% @expenses.each do |expense| %>
       <tr>
         <td><%= formatted_date(expense.date) %></td>
         <td><%= expense.description %></td>
