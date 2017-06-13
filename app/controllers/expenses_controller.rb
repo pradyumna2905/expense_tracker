@@ -45,6 +45,7 @@ class ExpensesController < ApplicationController
     params.require(:expense).permit(:date,
                              :amount,
                              :description,
+                             :payment_method_id,
                              :user_id)
   end
 end
