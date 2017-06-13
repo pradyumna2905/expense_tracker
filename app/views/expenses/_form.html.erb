@@ -3,7 +3,11 @@
     <%= f.input :date, as: :date %>
     <%= f.input :description %>
     <%= f.input :amount %>
-    <%= f.association :payment_method, collection: current_user.payment_methods.all %>
+    <% if current_user.payment_methods.reject(&:default_payment_method?).blank? %>
+      <%= link_to "Add New Payment Method", new_payment_method_path(current_user) %>
+    <% else %>
+      <%= f.association :payment_method, collection: current_user.payment_methods.all %>
+    <% end %>
 
     <div class="form-actions">
       <%= f.button :submit %>
