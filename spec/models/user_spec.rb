@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   it { should have_many :expenses }
-  
+  it { should have_many :payment_methods }
+
   describe '.grand_total' do
     it 'returns total for all expenses' do
       user = create(:user)
