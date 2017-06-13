@@ -1,7 +1,9 @@
 FactoryGirl.define do
   factory :payment_method do
-    user nil
+    user
+    name { 'Bank of America' }
   end
+
   factory :user do
     email { Faker::Internet.email }
     password 'password'
@@ -11,6 +13,7 @@ FactoryGirl.define do
     user
     date { Date.today }
     description { 'Beer' }
+    payment_method
     amount { Faker::Number.decimal(2, 2) }
   end
 end
