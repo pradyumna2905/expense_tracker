@@ -1,6 +1,7 @@
 class Expense < ApplicationRecord
   # ============================== ASSOCIATIONS =============================
   belongs_to :user
+  belongs_to :payment_method
 
   # Because we want the latest first... obviously
   default_scope { order(date: :desc) }

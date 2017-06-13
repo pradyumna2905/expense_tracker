@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   # Associations
   has_many :expenses
+  has_many :payment_methods
 
   def grand_total
     self.expenses.sum(:amount)
