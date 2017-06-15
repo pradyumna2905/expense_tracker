@@ -1,4 +1,6 @@
 language: ruby
+cache: bundler
+
 rvm:
   - 2.3.3
 
@@ -7,6 +9,10 @@ services:
 
 before_script:
   - psql -c 'create database expense_tracker_test;' -U postgres
+
+branches:
+  only:
+    - master
 
 script:
   - bin/rake db:migrate RAILS_ENV=test
