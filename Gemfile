@@ -31,6 +31,7 @@ group :development, :test do
   gem 'faker', github: 'stympy/faker'
   gem 'simplecov', require: false
   gem 'pry'
+  gem 'rails-controller-testing'
 end
 
 group :development do
