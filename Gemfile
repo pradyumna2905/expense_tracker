@@ -32,6 +32,10 @@ group :development, :test do
   gem 'simplecov', require: false
 end
 
+group :test do
+  gem 'database_cleaner'
+end
+
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
