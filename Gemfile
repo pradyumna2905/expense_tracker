@@ -32,6 +32,7 @@ group :development, :test do
   gem 'simplecov', require: false
   gem 'pry'
   gem 'rails-controller-testing'
+  gem 'capybara'
 end
 
 group :development do
