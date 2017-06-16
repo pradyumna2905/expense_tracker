@@ -1,4 +1,5 @@
 class PaymentMethodsController < ApplicationController
+  before_action :require_user
   def new
     @payment_method = current_user.payment_methods.build
   end
