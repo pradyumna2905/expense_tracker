@@ -31,7 +31,7 @@ RSpec.describe DashboardsController, type: :controller do
         get :current
 
         expect(flash[:danger]).
-          to eq "You need to be logged in to view your expenses!"
+          to eq "Please log in to continue!"
       end
     end
   end
