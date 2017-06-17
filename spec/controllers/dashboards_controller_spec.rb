@@ -36,6 +36,40 @@ RSpec.describe DashboardsController, type: :controller do
     end
   end
 
+  describe '#trends' do
+    context 'when signed in' do
+      before do
+        create_and_sign_in_user
+      end
+
+      it 'renders the trends page' do
+        get :trends
+
+        expect(response).to render_template :trends
+      end
+    end
+
+    context 'when signed out' do
+      it 'does not render trends tempalte' do
+        get :trends
+
+        expect(response).to_not render_template :current
+      end
+
+      it 'redirects to log in page' do
+        get :trends
+
+        expect(response).to redirect_to(new_user_session_path)
+      end
+
+      it 'populates flash with message' do
+        get :trends
+
+        expect(flash[:danger]).
+          to eq "Please log in to continue!"
+      end
+    end
+  end
   def create_and_sign_in_user
     user = create(:user)
     sign_in user
