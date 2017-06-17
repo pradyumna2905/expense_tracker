@@ -32,14 +32,14 @@ RSpec.describe ExpensesController, type: :controller do
     context 'with valid params' do
       it 'creates an expense record' do
         expect { post :create, params:
-                 { expense: attributes_for(:expense, user: sign_in_user) } }.
+                 { expense: attributes_for(:expense, user: create_and_sign_in_user) } }.
                  to change(Expense, :count).by 1
 
       end
 
       it 'redirects to index page' do
         post :create, params: { expense: attributes_for(:expense,
-                                                        user: sign_in_user) }
+                                                        user: create_and_sign_in_user) }
 
         expect(response).to redirect_to expenses_path
       end
@@ -56,7 +56,7 @@ RSpec.describe ExpensesController, type: :controller do
       it 'renders the new template' do
         post :create, params: { expense: attributes_for(:expense,
                                                         amount: nil,
-                                                        user: sign_in_user) }
+                                                        user: create_and_sign_in_user) }
 
         expect(response).to render_template :new
       end
@@ -66,14 +66,14 @@ RSpec.describe ExpensesController, type: :controller do
   describe '#index' do
     context 'when signed in' do
       it 'renders index page' do
-        sign_in_user
+        create_and_sign_in_user
         get :index
 
         expect(response).to render_template :index
       end
 
       it 'displays all the transactions' do
-        user = sign_in_user
+        user = create_and_sign_in_user
         get :index
 
         expect(assigns(:expenses)).to(
@@ -100,7 +100,7 @@ RSpec.describe ExpensesController, type: :controller do
   describe '#edit' do
     context 'when signed in' do
       it 'renders edit page' do
-        user = sign_in_user
+        user = create_and_sign_in_user
         expense = create(:expense, user: user)
         get :edit, params: { id: expense.id }
 
@@ -128,7 +128,7 @@ RSpec.describe ExpensesController, type: :controller do
   describe '#update' do
     context 'with valid params' do
       it 'creates an expense record' do
-        user = sign_in_user
+        user = create_and_sign_in_user
         expense = create(:expense, user: user)
 
         put :update, params: { id: expense.id,
@@ -142,7 +142,7 @@ RSpec.describe ExpensesController, type: :controller do
 
     context 'with invalid params' do
       it 'does not creates an expense record' do
-        user = sign_in_user
+        user = create_and_sign_in_user
         expense = create(:expense, description: "Old", user: user)
 
         put :update, params: { id: expense.id,
@@ -157,7 +157,7 @@ RSpec.describe ExpensesController, type: :controller do
 
   describe '#destroy' do
     it 'finds the right record' do
-      user = sign_in_user
+      user = create_and_sign_in_user
       expense = create(:expense, description: "Old", user: user)
       delete :destroy, params: { id: expense.id }
 
@@ -165,7 +165,7 @@ RSpec.describe ExpensesController, type: :controller do
     end
 
     it 'deletes the right record' do
-      user = sign_in_user
+      user = create_and_sign_in_user
       expense = create(:expense, description: "Old", user: user)
 
       expect { delete :destroy,
@@ -174,7 +174,7 @@ RSpec.describe ExpensesController, type: :controller do
     end
   end
 
-  def sign_in_user
+  def create_and_sign_in_user
     user = create(:user)
     sign_in user
     user
