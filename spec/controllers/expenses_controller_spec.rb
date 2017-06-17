@@ -23,7 +23,7 @@ RSpec.describe ExpensesController, type: :controller do
         get :new
 
         expect(flash[:danger]).
-          to eq "You need to be logged in to view your expenses!"
+          to eq "Please log in to continue!"
       end
     end
   end
@@ -92,7 +92,7 @@ RSpec.describe ExpensesController, type: :controller do
         get :index
 
         expect(flash[:danger]).
-          to eq "You need to be logged in to view your expenses!"
+          to eq "Please log in to continue!"
       end
     end
   end
@@ -120,7 +120,7 @@ RSpec.describe ExpensesController, type: :controller do
         get :edit, params: { id: 5 }
 
         expect(flash[:danger]).
-          to eq "You need to be logged in to view your expenses!"
+          to eq "Please log in to continue!"
       end
     end
   end
