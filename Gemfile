@@ -18,6 +18,8 @@ gem 'devise'
 gem 'simple_form'
 gem 'inline_svg'
 gem 'kaminari', github: "amatsuda/kaminari"
+gem 'chartkick'
+gem 'groupdate'
 
 group :production do
   gem 'pg'

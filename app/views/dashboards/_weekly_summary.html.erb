@@ -1,0 +1,4 @@
+<%= line_chart @expenses.group_by_day_of_week(:date,
+                                              range: 1.week.ago..Date.today,
+                                              format: "%a").
+                                              sum(:amount) %>

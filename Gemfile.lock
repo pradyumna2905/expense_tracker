@@ -89,6 +89,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    chartkick (2.2.4)
     coderay (1.1.1)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -117,6 +118,8 @@ GEM
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    groupdate (3.2.0)
+      activesupport (>= 3)
     i18n (0.8.4)
     inline_svg (1.2.1)
       activesupport (>= 3.0)
@@ -265,11 +268,13 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   byebug
   capybara
+  chartkick
   coffee-rails (~> 4.2)
   database_cleaner
   devise
   factory_girl_rails
   faker!
+  groupdate
   inline_svg
   jbuilder (~> 2.5)
   jquery-rails
