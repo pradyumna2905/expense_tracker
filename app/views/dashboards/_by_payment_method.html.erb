@@ -1,0 +1,6 @@
+<%= pie_chart @payment_methods.
+  group(:name).
+  joins(:expenses).
+  where("expenses.date >= ?", 1.week.ago).
+  sum(:amount)
+%>
