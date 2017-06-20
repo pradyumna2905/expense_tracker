@@ -4,7 +4,7 @@ class Expense < ApplicationRecord
   belongs_to :payment_method, optional: true
 
   # Because we want the latest first... obviously
-  default_scope { order(date: :desc) }
+  # default_scope { order(date: :desc) }
 
   # ============================== VALIDATIONS  =============================
   validates_presence_of :date, :amount, :description
