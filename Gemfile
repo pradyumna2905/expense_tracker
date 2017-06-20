@@ -20,6 +20,7 @@ gem 'inline_svg'
 gem 'kaminari', github: "amatsuda/kaminari"
 gem 'chartkick'
 gem 'groupdate'
+gem 'gemoji'
 
 group :production do
   gem 'pg'
