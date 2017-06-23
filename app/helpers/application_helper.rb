@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def sub_nav_link(text, path)
-    link_to text.to_s, path,
+    active_link_to text.to_s.upcase, path,
       class: "sub-nav-link"
   end
 end
