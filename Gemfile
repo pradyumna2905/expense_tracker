@@ -21,6 +21,7 @@ gem 'kaminari', github: "amatsuda/kaminari"
 gem 'chartkick'
 gem 'groupdate'
 gem 'gemoji'
+gem 'active_link_to'
 
 group :production do
   gem 'pg'
