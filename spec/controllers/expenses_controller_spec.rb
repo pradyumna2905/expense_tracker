@@ -72,12 +72,18 @@ RSpec.describe ExpensesController, type: :controller do
         expect(response).to render_template :index
       end
 
-      it 'displays all the transactions' do
+      it 'displays all the transactions in desc order' do
         user = create_and_sign_in_user
+        expense_today = create(:expense, user: user,
+                               date: Date.today)
+        expense_old = create(:expense, user: user,
+                               date: Date.yesterday)
+        expense_oldest = create(:expense, user: user,
+                                date: 4.days.ago)
         get :index
 
         expect(assigns(:expenses)).to(
-             eq(user.expenses))
+             eq([expense_today, expense_old, expense_oldest]))
       end
     end
 

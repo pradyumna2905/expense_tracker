@@ -92,6 +92,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-webkit (1.14.0)
+      capybara (>= 2.3.0, < 2.14.0)
+      json
     chartkick (2.2.4)
     coderay (1.1.1)
     coffee-rails (4.2.2)
@@ -273,6 +276,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   byebug
   capybara
+  capybara-webkit
   chartkick
   coffee-rails (~> 4.2)
   database_cleaner
