@@ -11,5 +11,9 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :dashboards do
+    get :current
+    get :trends
+  end
   resources :expenses
 end
