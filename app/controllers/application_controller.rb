@@ -16,6 +16,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    new_expense_path
+    dashboards_current_path
   end
 end
