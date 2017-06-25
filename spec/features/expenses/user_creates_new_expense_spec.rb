@@ -5,6 +5,7 @@ describe 'User creates new expense' do
 
   before do
     sign_in user
+    visit new_expense_path
   end
 
   context 'with valid data' do
