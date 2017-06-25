@@ -16,7 +16,8 @@ describe 'User signs up' do
 
       submit_form
 
-      expect(page).to have_content("New Expense")
+      expect(page).to have_content("CURRENT")
+      expect(page).to have_content("TRENDS")
     end
   end
 

@@ -13,7 +13,7 @@ describe 'User visits current dashboard' do
       expect(page).to have_content "CURRENT"
 
       click_link "CURRENT"
-      expect(page).to have_content "Weekly Summary"
+      expect(page).to have_content "Last week's expense"
       expect(page).
         to have_content "You do not have any expenses in the past week. Yay!"
     end
@@ -24,7 +24,7 @@ describe 'User visits current dashboard' do
       expect(page).to have_content "CURRENT"
 
       click_link "CURRENT"
-      expect(page).to have_content "Weekly Summary"
+      expect(page).to have_content "Last week's expense"
 
       # Chartkick squentially ids charts. So this is the line chart.
       expect(page).to have_css('div#chart-1')
