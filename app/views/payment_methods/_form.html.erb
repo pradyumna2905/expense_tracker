@@ -1,0 +1,10 @@
+<div class="col-md-2 col-md-offset-5">
+  <%= simple_form_for @payment_method do |f| %>
+    <%= f.input :name, hint: "Example: Chase, Bank of America, Bitcoin" %>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+</div>
+

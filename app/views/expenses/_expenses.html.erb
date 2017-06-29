@@ -2,7 +2,8 @@
   <thead>
     <tr>
       <th class="col-md-1">Date</th>
-      <th class="col-md-8">Description</th>
+      <th class="col-md-6">Description</th>
+      <th class="col-md-2">Payment Method</th>
       <th>Amount</th>
       <th colspan="2">Actions</th>
     </tr>
@@ -13,6 +14,7 @@
       <tr>
         <td><%= formatted_date(expense.date) %></td>
         <td><%= expense.description %></td>
+        <td><%= expense.payment_method.name %></td>
         <td><%= number_to_currency(expense.amount) %></td>
         <td><%= link_to inline_svg("edit.svg", title: 'Edit'), edit_expense_path(expense) %></td>
         <td><%= link_to inline_svg("delete.svg", title: 'Delete'),

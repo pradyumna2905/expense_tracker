@@ -10,10 +10,16 @@
 user = User.create(email: 'test@example.com',
                    password: 'password')
 
+# Create some payment methods
+5.times do
+  user.payment_methods.create(name: Faker::Bank.name.upcase)
+end
+
 # Create this month's expenses
-100.times do 
+100.times do
   user.expenses.create(date: Faker::Date.backward(30),
                        amount: Faker::Number.decimal(2, 2),
+                       payment_method_id: user.payment_methods.sample.id,
                        description: [Faker::HarryPotter.quote,
                                      Faker::HarryPotter.book].sample
                       )
