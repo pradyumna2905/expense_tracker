@@ -20,8 +20,7 @@ end
   user.expenses.create(date: Faker::Date.between(Date.today, 1.week.ago),
                        amount: Faker::Number.decimal(2, 2),
                        payment_method_id: user.payment_methods.sample.id,
-                       description: [Faker::HarryPotter.quote,
-                                     Faker::HarryPotter.book].sample
+                       description: Faker::Beer.name
                       )
 end
 
@@ -30,7 +29,6 @@ end
   user.expenses.create(date: Faker::Date.between(Date.today, 1.year.ago),
                        amount: Faker::Number.decimal(2, 2),
                        payment_method_id: user.payment_methods.sample.id,
-                       description: [Faker::HarryPotter.quote,
-                                     Faker::HarryPotter.book].sample
+                       description: Faker::Beer.name
                       )
 end
