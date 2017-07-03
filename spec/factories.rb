@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  factory :category do
+    title "MyString"
+    expense nil
+  end
   factory :payment_method do
     user
     name { 'Bank of America' }

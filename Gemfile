@@ -18,6 +18,10 @@ gem 'devise'
 gem 'simple_form'
 gem 'inline_svg'
 gem 'kaminari', github: "amatsuda/kaminari"
+gem 'chartkick'
+gem 'groupdate'
+gem 'gemoji'
+gem 'active_link_to'
 
 group :production do
   gem 'pg'
@@ -33,6 +37,7 @@ group :development, :test do
   gem 'pry'
   gem 'rails-controller-testing'
   gem 'capybara'
+  gem 'capybara-webkit'
 end
 
 group :test do
@@ -44,6 +49,7 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'bullet'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

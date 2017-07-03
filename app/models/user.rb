@@ -7,6 +7,7 @@ class User < ApplicationRecord
   # Associations
   has_many :expenses
   has_many :payment_methods
+  has_many :categories
 
   accepts_nested_attributes_for :payment_methods
 

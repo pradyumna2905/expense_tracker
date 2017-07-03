@@ -5,6 +5,7 @@ describe 'User creates new expense' do
 
   before do
     sign_in user
+    visit new_expense_path
   end
 
   context 'with valid data' do
@@ -27,8 +28,8 @@ describe 'User creates new expense' do
     end
   end
 
-  context 'with valid data' do
-    it 'saves the expense successfully' do
+  context 'with invalid data' do
+    it 'does not save the expense successfully' do
       expect(page).to have_content("New Expense")
 
       select_this_from_that("2020", "expense_date_1i")

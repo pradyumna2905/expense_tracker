@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def require_user
     unless user_signed_in?
-      flash[:danger] = "You need to be logged in to view your expenses!"
+      flash[:danger] = "Please log in to continue!"
       redirect_to new_user_session_path
     end
   end
@@ -16,6 +16,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    new_expense_path
+    dashboards_current_path
   end
 end

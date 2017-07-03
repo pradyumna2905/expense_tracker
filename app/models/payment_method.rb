@@ -1,5 +1,8 @@
 class PaymentMethod < ApplicationRecord
-  DEFAULT_PAYMENT_METHOD = "Cash"
+  DEFAULT_PAYMENT_METHOD = "Cash".freeze
+
+  scope :weekly_expense_report, -> { group(:name).joins(:expenses).
+    where("expenses.date >= ?", 1.week.ago) }
 
   belongs_to :user
   has_many :expenses

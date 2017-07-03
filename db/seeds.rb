@@ -15,13 +15,20 @@ user = User.create(email: 'test@example.com',
   user.payment_methods.create(name: Faker::Bank.name.upcase)
 end
 
-# Create this month's expenses
+# Generate current week's data
 100.times do
-  user.expenses.create(date: Faker::Date.backward(30),
+  user.expenses.create(date: Faker::Date.between(Date.today, 1.week.ago),
                        amount: Faker::Number.decimal(2, 2),
                        payment_method_id: user.payment_methods.sample.id,
-                       description: [Faker::HarryPotter.quote,
-                                     Faker::HarryPotter.book].sample
+                       description: Faker::Beer.name
                       )
 end
 
+# Generate current month's expenses
+100.times do
+  user.expenses.create(date: Faker::Date.between(Date.today, 1.year.ago),
+                       amount: Faker::Number.decimal(2, 2),
+                       payment_method_id: user.payment_methods.sample.id,
+                       description: Faker::Beer.name
+                      )
+end

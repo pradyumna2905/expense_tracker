@@ -24,7 +24,7 @@ RSpec.describe PaymentMethodsController, type: :controller do
         get :new, params: { id: 5 }
 
         expect(flash[:danger]).
-          to eq "You need to be logged in to view your expenses!"
+          to eq "Please log in to continue!"
       end
     end
   end

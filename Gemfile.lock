@@ -56,6 +56,9 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_link_to (1.0.4)
+      actionpack
+      addressable
     activejob (5.0.3)
       activesupport (= 5.0.3)
       globalid (>= 0.3.6)
@@ -81,6 +84,9 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.3)
+    bullet (5.4.2)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.10.0)
     byebug (9.0.6)
     capybara (2.10.1)
       addressable
@@ -89,6 +95,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-webkit (1.14.0)
+      capybara (>= 2.3.0, < 2.14.0)
+      json
+    chartkick (2.2.4)
     coderay (1.1.1)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -115,8 +125,11 @@ GEM
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
     ffi (1.9.18)
+    gemoji (3.0.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    groupdate (3.2.0)
+      activesupport (>= 3)
     i18n (0.8.4)
     inline_svg (1.2.1)
       activesupport (>= 3.0)
@@ -245,6 +258,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
+    uniform_notifier (1.10.0)
     warden (1.2.7)
       rack (>= 1.0)
     web-console (3.5.1)
@@ -262,14 +276,20 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_link_to
   bootstrap-sass (~> 3.3.6)
+  bullet
   byebug
   capybara
+  capybara-webkit
+  chartkick
   coffee-rails (~> 4.2)
   database_cleaner
   devise
   factory_girl_rails
   faker!
+  gemoji
+  groupdate
   inline_svg
   jbuilder (~> 2.5)
   jquery-rails
