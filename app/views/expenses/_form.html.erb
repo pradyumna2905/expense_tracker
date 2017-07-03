@@ -11,6 +11,14 @@
             selected: PaymentMethod::DEFAULT_PAYMENT_METHOD
       %>
     <% end %>
+    <% if current_user.categories.blank? %>
+      <%= link_to "Add A New Category", new_category_path(current_user) %>
+    <% else %>
+      <%= f.association :category,
+            collection: current_user.categories.all,
+            selected: Category::DEFAULT_CATEGORY
+      %>
+    <% end %>
 
     <div class="form-actions">
       <%= f.button :submit %>

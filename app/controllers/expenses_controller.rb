@@ -48,6 +48,7 @@ class ExpensesController < ApplicationController
                              :amount,
                              :description,
                              :payment_method_id,
+                             :category_id,
                              :user_id)
   end
 end
