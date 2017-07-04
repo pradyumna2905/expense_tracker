@@ -28,8 +28,9 @@ describe 'User visits current dashboard' do
 
       # Chartkick squentially ids charts. So this is the line chart.
       expect(page).to have_css('div#chart-1')
-      # And the pie chart
+      # And the pie charts
       expect(page).to have_css('div#chart-2')
+      expect(page).to have_css('div#chart-3')
     end
   end
 end
