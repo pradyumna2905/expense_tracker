@@ -3,6 +3,8 @@ class ExpensesController < ApplicationController
 
   def new
     @expense = Expense.new
+    @categories = current_user.categories.pluck(:title).uniq
+    @payment_methods = current_user.payment_methods.pluck(:name).uniq
   end
 
   def create
@@ -46,6 +48,7 @@ class ExpensesController < ApplicationController
                              :amount,
                              :description,
                              :payment_method_id,
+                             :category_id,
                              :user_id)
   end
 end
