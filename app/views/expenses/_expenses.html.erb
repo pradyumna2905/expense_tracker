@@ -19,8 +19,8 @@
         <td><%= expense.category.title %></td>
         <td><%= expense.payment_method.name %></td>
         <td>
-          <span class="col-md-6"><%= link_to inline_svg("edit.svg", title: 'Edit'), edit_expense_path(expense) %></span>
-          <span class="col-md-6"><%= link_to inline_svg("delete.svg", title: 'Delete'),
+          <span class="col-md-6"><%= link_to fa_icon("pencil-square-o", class: "fa-2x"), edit_expense_path(expense) %></span>
+          <span class="col-md-6"><%= link_to fa_icon("trash-o", class: "fa-2x"),
             expense,
             method: :delete,
             data: {confirm: "Are you sure?"}
