@@ -53,5 +53,6 @@ ActiveRecord::Schema.define(version: 20170613214731) do
   end
 
   add_foreign_key "expenses", "payment_methods"
+  add_foreign_key "expenses", "users"
   add_foreign_key "payment_methods", "users"
 end
