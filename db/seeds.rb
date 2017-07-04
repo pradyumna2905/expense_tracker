@@ -11,15 +11,15 @@ user = User.create(email: 'test@example.com',
                    password: 'password')
 
 # Create some payment methods
-# 5.times do
-#   user.payment_methods.create(name: Faker::Bank.name.upcase)
-# end
+5.times do
+  user.payment_methods.create(name: Faker::Bank.name.upcase)
+end
 
 # Generate current week's data
 100.times do
   user.expenses.create(date: Faker::Date.between(Date.today, 1.week.ago),
                        amount: Faker::Number.decimal(2, 2),
-                       # payment_method_id: user.payment_methods.sample.id,
+                       payment_method_id: user.payment_methods.sample.id,
                        description: [Faker::HarryPotter.quote,
                                      Faker::HarryPotter.book].sample
                       )
@@ -29,7 +29,7 @@ end
 100.times do
   user.expenses.create(date: Faker::Date.between(Date.today, 1.year.ago),
                        amount: Faker::Number.decimal(2, 2),
-                       # payment_method_id: user.payment_methods.sample.id,
+                       payment_method_id: user.payment_methods.sample.id,
                        description: [Faker::HarryPotter.quote,
                                      Faker::HarryPotter.book].sample
                       )

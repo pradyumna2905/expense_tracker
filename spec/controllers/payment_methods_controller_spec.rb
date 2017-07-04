@@ -31,7 +31,7 @@ RSpec.describe PaymentMethodsController, type: :controller do
 
   describe '#create' do
     context 'with valid params' do
-      it 'creates an expense record' do
+      it 'creates a payment method record' do
         user = sign_in_user
         expect { post :create, params:
                  { id: user.id,
@@ -59,7 +59,7 @@ RSpec.describe PaymentMethodsController, type: :controller do
                    payment_method: attributes_for(:payment_method,
                                                   name: "",
                                                   user: user) } }.
-                 to_not change(Expense, :count)
+                 to_not change(PaymentMethod, :count)
 
       end
 

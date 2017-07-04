@@ -18,6 +18,7 @@ describe 'User creates new expense' do
       fill_in_this_with_that("Description", "Beer")
       fill_in_this_with_that("Amount", 10)
       expect(page).to have_content("Add New Payment Method")
+      expect(page).to have_content("Add New Category")
 
       submit_form
 
@@ -38,6 +39,7 @@ describe 'User creates new expense' do
       fill_in_this_with_that("Description", "")
       fill_in_this_with_that("Amount", nil)
       expect(page).to have_content("Add New Payment Method")
+      expect(page).to have_content("Add New Category")
 
       submit_form
 
