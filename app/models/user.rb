@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   # Associations
-  has_many :expenses
-  has_many :payment_methods
-  has_many :categories
+  has_many :expenses, dependent: :destroy
+  has_many :payment_methods, dependent: :destroy
+  has_many :categories, dependent: :destroy
 
   accepts_nested_attributes_for :expenses
 

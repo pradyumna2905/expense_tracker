@@ -1,11 +1,11 @@
 class Expense < ApplicationRecord
   # ============================== ASSOCIATIONS =============================
   belongs_to :user
-  belongs_to :payment_method, dependent: :destroy
-  belongs_to :category, dependent: :destroy
+  belongs_to :payment_method
+  belongs_to :category
 
   # Because we want the latest first... obviously
-  scope :desc, -> { order(date: :desc) }
+  scope :desc, -> { order(date: :desc).order(created_at: :desc) }
 
   # ============================== VALIDATIONS  =============================
   validates_presence_of :date, :amount, :description

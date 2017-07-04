@@ -25,6 +25,8 @@ class ExpensesController < ApplicationController
 
   def edit
     @expense = Expense.find(params[:id])
+    @categories = current_user.categories.pluck(:title).uniq
+    @payment_methods = current_user.payment_methods.pluck(:name).uniq
   end
 
   def update
@@ -47,8 +49,8 @@ class ExpensesController < ApplicationController
     params.require(:expense).permit(:date,
                              :amount,
                              :description,
-                             :payment_method_id,
-                             :category_id,
+                             :payment_method,
+                             :category,
                              :user_id)
   end
 end
