@@ -33,4 +33,16 @@ RSpec.describe Expense, type: :model do
         to eq "Cash"
     end
   end
+
+  describe ".set_default_category" do
+    it "sets default category if not present" do
+      expense = create(:expense,
+                       category_id: nil,
+                       user: create(:user))
+
+      expense.reload
+      expect(expense.category.title).
+        to eq "Uncategorized"
+    end
+  end
 end

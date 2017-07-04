@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :category do
+    user
+    title "Utility"
+  end
+
   factory :payment_method do
     user
     name { 'Bank of America' }
