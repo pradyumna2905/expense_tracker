@@ -30,25 +30,29 @@ RSpec.describe ExpensesController, type: :controller do
 
   describe '#create' do
     context 'with valid params' do
+      let(:user) { create_and_sign_in_user }
       it 'creates an expense record' do
         expect { post :create, params:
-                 { expense: attributes_for(:expense, user: create_and_sign_in_user) } }.
+                 { expense: attributes_for(:expense, user: user) } }.
                  to change(Expense, :count).by 1
 
       end
 
       it 'redirects to index page' do
         post :create, params: { expense: attributes_for(:expense,
-                                                        user: create_and_sign_in_user) }
+                                                        user: user) }
 
         expect(response).to redirect_to expenses_path
       end
     end
 
     context 'with invalid params' do
+      let(:user) { create_and_sign_in_user }
       it 'does not creates an expense record' do
         expect { post :create, params:
-                 { expense: attributes_for(:expense, user: nil) } }.
+                 { expense: attributes_for(:expense,
+                                           user: user,
+                                           date: Date.tomorrow) } }.
                  to_not change(Expense, :count)
 
       end
@@ -56,7 +60,7 @@ RSpec.describe ExpensesController, type: :controller do
       it 'renders the new template' do
         post :create, params: { expense: attributes_for(:expense,
                                                         amount: nil,
-                                                        user: create_and_sign_in_user) }
+                                                        user: user) }
 
         expect(response).to render_template :new
       end
@@ -82,7 +86,7 @@ RSpec.describe ExpensesController, type: :controller do
                                 date: 4.days.ago)
         get :index
 
-        expect(assigns(:expenses)).to(
+        expect(user.expenses.desc).to(
              eq([expense_today, expense_old, expense_oldest]))
       end
     end
@@ -139,6 +143,7 @@ RSpec.describe ExpensesController, type: :controller do
 
         put :update, params: { id: expense.id,
                                expense: attributes_for(:expense,
+                                                       user: user,
                                                        description: "New") }
 
         expect(expense.reload.description).to eq "New"
@@ -153,6 +158,7 @@ RSpec.describe ExpensesController, type: :controller do
 
         put :update, params: { id: expense.id,
                                expense: attributes_for(:expense,
+                                                       user: user,
                                                        description: "") }
 
         expect(expense.reload.description).to eq "Old"

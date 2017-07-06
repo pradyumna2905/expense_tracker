@@ -14,11 +14,6 @@ class Expense < ApplicationRecord
 
   validate :future_expense
 
-  before_validation do
-    set_default_payment_method
-    set_default_category
-  end
-
   accepts_nested_attributes_for :payment_method
   accepts_nested_attributes_for :category
 
@@ -26,26 +21,6 @@ class Expense < ApplicationRecord
     # Dont allow future expenses for now
     if self.date.present? && self.date > Date.today
       errors.add(:date, "can't be in the future.")
-    end
-  end
-
-  private
-
-  def set_default_payment_method
-    if self.payment_method_id.blank?
-      self.build_payment_method(
-        name: PaymentMethod::DEFAULT_PAYMENT_METHOD,
-        user: self.user
-      )
-    end
-  end
-
-  def set_default_category
-    if self.category_id.blank?
-      self.build_category(
-        title: Category::DEFAULT_CATEGORY,
-        user: self.user
-      )
     end
   end
 end
