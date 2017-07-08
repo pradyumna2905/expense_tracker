@@ -3,8 +3,6 @@ class ExpensesController < ApplicationController
 
   def new
     @expense = Expense.new
-    @categories = current_user.categories.select('distinct title')
-    @payment_methods = current_user.payment_methods.select('distinct name')
   end
 
   def create
