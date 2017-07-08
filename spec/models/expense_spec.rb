@@ -21,28 +21,4 @@ RSpec.describe Expense, type: :model do
       expect(expense).to_not be_valid
     end
   end
-
-  describe ".set_default_payment_method" do
-    it "sets default payment method if payment method not present" do
-      expense = create(:expense,
-                       payment_method_id: nil,
-                       user: create(:user))
-
-      expense.reload
-      expect(expense.payment_method.name).
-        to eq "Cash"
-    end
-  end
-
-  describe ".set_default_category" do
-    it "sets default category if not present" do
-      expense = create(:expense,
-                       category_id: nil,
-                       user: create(:user))
-
-      expense.reload
-      expect(expense.category.title).
-        to eq "Uncategorized"
-    end
-  end
 end

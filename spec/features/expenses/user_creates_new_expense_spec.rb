@@ -17,15 +17,16 @@ describe 'User creates new expense' do
       select_this_from_that("29", "expense_date_3i")
       fill_in_this_with_that("Description", "Beer")
       fill_in_this_with_that("Amount", 10)
-      expect(page).to have_content("Add New Payment Method")
-      expect(page).to have_content("Add New Category")
 
+      expect(page).to have_select("expense_category_id", options: ["Uncategorized"])
+      expect(page).to have_select("expense_payment_method_id", options: ["Cash"])
       submit_form
 
       expect(page).to have_content(user.grand_total)
       expect(page).to have_content("Beer")
       expect(page).to have_content("May 29, 2017")
       expect(page).to have_content("Cash")
+      expect(page).to have_content("Uncategorized")
     end
   end
 
@@ -38,8 +39,8 @@ describe 'User creates new expense' do
       select_this_from_that("29", "expense_date_3i")
       fill_in_this_with_that("Description", "")
       fill_in_this_with_that("Amount", nil)
-      expect(page).to have_content("Add New Payment Method")
-      expect(page).to have_content("Add New Category")
+      expect(page).to have_select("expense_category_id", options: ["Uncategorized"])
+      expect(page).to have_select("expense_payment_method_id", options: ["Cash"])
 
       submit_form
 

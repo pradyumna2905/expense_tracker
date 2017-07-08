@@ -3,22 +3,25 @@
     <%= f.input :date, as: :date %>
     <%= f.input :description %>
     <%= f.input :amount %>
-    <% if current_user.categories.reject(&:default_category?).blank? %>
+    <% if current_user.categories.blank? %>
       <%= f.label "Category" %>
       <%= link_to "Add New Category", new_category_path(current_user) %>
     <% else %>
       <%= f.association :category,
-            collection: @categories,
-            selected: Category::DEFAULT_CATEGORY
+            collection: current_user.categories,
+            selected: (@expense.category_id || current_user.default_category),
+            value_method: :id
       %>
     <% end %>
-    <% if current_user.payment_methods.reject(&:default_payment_method?).blank? %>
+    <% if current_user.payment_methods.blank? %>
       <%= f.label "Payment method" %>
       <%= link_to "Add New Payment Method", new_payment_method_path(current_user) %>
     <% else %>
       <%= f.association :payment_method,
-            collection: @payment_methods,
-            selected: PaymentMethod::DEFAULT_PAYMENT_METHOD
+            collection: current_user.payment_methods,
+            selected: (@expense.payment_method_id ||
+                       current_user.default_payment_method),
+            value_method: :id
       %>
     <% end %>
 
