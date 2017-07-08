@@ -6,8 +6,7 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    @user = current_user
-    @expense = @user.expenses.build(expense_params)
+    @expense = current_user.expenses.build(expense_params)
 
     if @expense.save
       redirect_to expenses_path
@@ -24,8 +23,6 @@ class ExpensesController < ApplicationController
 
   def edit
     @expense = Expense.find(params[:id])
-    @categories = current_user.categories.pluck(:title).uniq
-    @payment_methods = current_user.payment_methods.pluck(:name).uniq
   end
 
   def update
