@@ -13,7 +13,7 @@ before_script:
 branches:
   only:
     - master
-    - v1.0
+    - v1.1
 
 script:
   - bin/rake db:migrate RAILS_ENV=test
