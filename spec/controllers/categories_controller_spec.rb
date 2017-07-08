@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PaymentMethodsController, type: :controller do
+RSpec.describe CategoriesController, type: :controller do
   describe '#new' do
     let(:user) { create(:user) }
 
@@ -31,21 +31,21 @@ RSpec.describe PaymentMethodsController, type: :controller do
 
   describe '#create' do
     context 'with valid params' do
-      it 'creates a payment method record' do
+      it 'creates a category record' do
         user = sign_in_user
         expect { post :create, params:
                  { id: user.id,
-                   payment_method: attributes_for(:payment_method,
-                                                  user: user) } }.
-                 to change(PaymentMethod, :count).by 1
+                   category: attributes_for(:category,
+                                            user: user) } }.
+                 to change(Category, :count).by 1
 
       end
 
       it 'redirects to index page' do
         user = sign_in_user
         post :create, params: { id: user.id,
-                   payment_method: attributes_for(:payment_method,
-                                                  user: user) }
+                   category: attributes_for(:category,
+                                            user: user) }
 
         expect(response).to redirect_to new_expense_path
       end
@@ -56,19 +56,19 @@ RSpec.describe PaymentMethodsController, type: :controller do
         user = sign_in_user
         expect { post :create, params:
                  { id: user.id,
-                   payment_method: attributes_for(:payment_method,
-                                                  name: "",
-                                                  user: user) } }.
-                 to_not change(PaymentMethod, :count)
+                   category: attributes_for(:category,
+                                            title: "",
+                                            user: user) } }.
+                 to_not change(Category, :count)
 
       end
 
       it 'renders the new template' do
         user = sign_in_user
         post :create, params: { id: user.id,
-                   payment_method: attributes_for(:payment_method,
-                                                  name: "",
-                                                  user: user) }
+                   category: attributes_for(:category,
+                                            title: "",
+                                            user: user) }
 
         expect(response).to render_template :new
       end

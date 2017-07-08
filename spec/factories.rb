@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :category do
+    user
+    title "Utility"
+  end
+
   factory :payment_method do
     user
     name { 'Bank of America' }
@@ -13,7 +18,8 @@ FactoryGirl.define do
     user
     date { Date.today }
     description { 'Beer' }
-    payment_method
     amount { Faker::Number.decimal(2, 2) }
+    payment_method_id { user.payment_methods.first.id }
+    category_id { user.categories.first.id }
   end
 end

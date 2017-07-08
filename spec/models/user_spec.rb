@@ -13,14 +13,4 @@ RSpec.describe User, type: :model do
       expect(user.grand_total).to eq 50
     end
   end
-
-  describe ".set_default_payment_method" do
-    it "sets default payment method if payment method not present" do
-      user = create(:user)
-
-      user.reload
-      expect(user.payment_methods.last.name).
-        to eq "Cash"
-    end
-  end
 end

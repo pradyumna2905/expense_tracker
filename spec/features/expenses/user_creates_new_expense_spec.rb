@@ -5,6 +5,7 @@ describe 'User creates new expense' do
 
   before do
     sign_in user
+    visit new_expense_path
   end
 
   context 'with valid data' do
@@ -16,19 +17,21 @@ describe 'User creates new expense' do
       select_this_from_that("29", "expense_date_3i")
       fill_in_this_with_that("Description", "Beer")
       fill_in_this_with_that("Amount", 10)
-      expect(page).to have_content("Add New Payment Method")
 
+      expect(page).to have_select("expense_category_id", options: ["Uncategorized"])
+      expect(page).to have_select("expense_payment_method_id", options: ["Cash"])
       submit_form
 
       expect(page).to have_content(user.grand_total)
       expect(page).to have_content("Beer")
       expect(page).to have_content("May 29, 2017")
       expect(page).to have_content("Cash")
+      expect(page).to have_content("Uncategorized")
     end
   end
 
-  context 'with valid data' do
-    it 'saves the expense successfully' do
+  context 'with invalid data' do
+    it 'does not save the expense successfully' do
       expect(page).to have_content("New Expense")
 
       select_this_from_that("2020", "expense_date_1i")
@@ -36,7 +39,8 @@ describe 'User creates new expense' do
       select_this_from_that("29", "expense_date_3i")
       fill_in_this_with_that("Description", "")
       fill_in_this_with_that("Amount", nil)
-      expect(page).to have_content("Add New Payment Method")
+      expect(page).to have_select("expense_category_id", options: ["Uncategorized"])
+      expect(page).to have_select("expense_payment_method_id", options: ["Cash"])
 
       submit_form
 
