@@ -7,8 +7,11 @@ Rails.application.routes.draw do
 
   resources :users, only: :none do
     member do
-      resources :payment_methods, except: [:index, :show], path: 'wallet'
-      resources :categories, except: [:index, :show]
+      resources :payment_methods, except: [:index, :show],
+        path: 'wallet', param: :payment_method_id
+      resources :categories, except: [:index, :show], param: :category_id
+
+      get '/profile', to: 'profiles#show'
     end
   end
 

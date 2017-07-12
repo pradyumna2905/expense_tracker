@@ -16,7 +16,7 @@ user = User.create(email: 'test@example.com',
 end
 
 8.times do
-  user.categories.create(title: Faker::Dessert.variety.upcase)
+  user.categories.create(title: Faker::Color.color_name.upcase)
 end
 
 # Generate current week's data
