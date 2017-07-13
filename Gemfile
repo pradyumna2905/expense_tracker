@@ -24,6 +24,9 @@ gem 'gemoji'
 gem 'active_link_to'
 gem 'font-awesome-rails'
 
+# HAML
+gem 'hamlit'
+
 group :production do
   gem 'pg'
 end

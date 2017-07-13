@@ -1,0 +1,11 @@
+.graph-container.col-md-8.col-md-offset-2
+  %h1.text-center Last week's expense
+  = render 'weekly_summary'
+
+.graph-container.col-md-5.col-md-offset-1
+  %h1.text-center By Payment Method
+  = render 'by_payment_method'
+
+.graph-container.col-md-5
+  %h1.text-center By Category
+  = render 'by_category'

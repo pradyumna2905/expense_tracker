@@ -1,0 +1,5 @@
+.row.flash-message
+  - flash.each do |key, message|
+    .alert{class: "alert-#{key == 'notice' ? 'success' : 'danger'}"}
+      = message
+      = link_to "&times;".html_safe, "", data: {dismiss: "alert"}, class: "close"
