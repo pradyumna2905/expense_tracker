@@ -19,7 +19,7 @@ class Expense < ApplicationRecord
 
   def future_expense
     # Dont allow future expenses for now
-    if self.date.present? && self.date > Date.today
+    if self.date.present? && self.date > Date.current
       errors.add(:date, "can't be in the future.")
     end
   end

@@ -6,4 +6,8 @@ module DateHelper
   def month_names
     Date::MONTHNAMES.compact
   end
+
+  def current_year
+    Date.current.year
+  end
 end

@@ -16,8 +16,8 @@ class ExpensesController < ApplicationController
   end
 
   def index
-    @expenses = current_user.expenses.desc.
-      includes(:payment_method, :category).page(params[:page])
+    @expenses = current_user.monthly_expenses(params[:month],
+                                              params[:year])
     @grand_total = current_user.grand_total
   end
 
