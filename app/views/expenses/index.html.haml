@@ -1,5 +1,8 @@
 .col-md-10.col-md-offset-1
   .col-md-12
+    - month_names.each do |month|
+      %span.col-md-1
+        = link_to month.upcase, expenses_path(month: month)
     .text-center.grand-total
       %p= number_to_currency(@grand_total)
 
