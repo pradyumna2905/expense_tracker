@@ -1,8 +1,0 @@
-<div class="row flash-message">
-  <% flash.each do |key, message| %>
-    <div class="alert alert-<%= key == 'notice' ? 'success' : 'danger' %>">
-    <%= message %>
-    <a class="close" data-dismiss="alert">&#215</a>
-  </div>
-  <% end %>
-</div>

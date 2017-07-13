@@ -1,0 +1,27 @@
+%nav.navbar.navbar-default.navbar-static-top
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle.collapsed{type: "button", data: {toggle: "collapse", target: "#navbar-main"}, aria: {expanded: "false"}}
+        %span.sr-only Toggle navigation
+        - 3.times do
+          %span.icon-bar
+
+      = link_to "EXPEN$A", root_path, class: "navbar-brand"
+
+    .collapse.navbar-collapse{id: "navbar-main"}
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %ul.nav.navbar-nav.navbar-right
+            %li= navbar_link_to "New Expense", new_expense_path
+            %li= navbar_link_to "View Expenses", expenses_path
+            %li.dropdown
+              %a.dropdown-toggle{href: "#", role: "button", data: {toggle: "dropdown"}, aria: {haspopup: "true", expanded: "false"}}
+                = current_user.email
+                %span.caret
+              %ul.dropdown-menu
+                %li= link_to "New Category", new_category_path(current_user)
+                %li= link_to "New Payment Method", new_payment_method_path(current_user)
+                %li.divider{role: "separator"}
+                %li= link_to "Logout", destroy_user_session_path, method: :delete
+        - else
+          %li= link_to "Log In", user_session_path
