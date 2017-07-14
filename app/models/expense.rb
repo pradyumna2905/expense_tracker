@@ -5,7 +5,7 @@ class Expense < ApplicationRecord
   belongs_to :category
 
   # Because we want the latest first... obviously
-  scope :desc, -> { order(date: :desc).order(created_at: :desc) }
+  scope :desc, -> { order(date: :desc) }
 
   # ============================== VALIDATIONS  =============================
   validates_presence_of :date, :amount, :description

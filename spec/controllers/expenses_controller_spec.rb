@@ -80,13 +80,13 @@ RSpec.describe ExpensesController, type: :controller do
         user = create_and_sign_in_user
         expense_today = create(:expense, user: user,
                                date: Date.today)
-        expense_old = create(:expense, user: user,
-                               date: Date.yesterday)
         expense_oldest = create(:expense, user: user,
                                 date: 4.days.ago)
+        expense_old = create(:expense, user: user,
+                               date: Date.yesterday)
         get :index
 
-        expect(user.expenses.desc).to(
+        expect(assigns(:expenses)).to(
              eq([expense_today, expense_old, expense_oldest]))
       end
     end

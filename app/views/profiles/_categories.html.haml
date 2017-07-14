@@ -1,0 +1,8 @@
+%h3 Categories
+
+- @categories.each do |category|
+  .col-md-12
+    %span.col-md-11.label-font
+      = link_to category.title.titleize, edit_category_path(current_user.id, category.id)
+    %span.col-md-1
+      = link_to fa_icon("trash-o", class: "fa-2x"), category_path(current_user, category.id), method: :delete, data: {confirm: "Are you sure?"}

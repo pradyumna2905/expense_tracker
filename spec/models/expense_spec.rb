@@ -17,7 +17,6 @@ RSpec.describe Expense, type: :model do
                       user: create(:user),
                       date: 2.days.from_now)
 
-
       expect(expense).to_not be_valid
     end
   end

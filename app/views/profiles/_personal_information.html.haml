@@ -1,0 +1,15 @@
+%h3 Personal
+
+%span.col-md-2
+  %p.label-font Email
+%span.col-md-10
+  %p.label-font= current_user.email
+
+%span.col-md-2
+  %p.label-font Password
+%span.col-md-10
+  %p.label-font= fake_masked_password
+
+%span.col-md-10.col-md-offset-2
+  %p.label-font
+    %b= link_to "Change password (coming soon)", profile_user_path

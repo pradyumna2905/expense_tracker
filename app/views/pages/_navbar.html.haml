@@ -22,6 +22,8 @@
                 %li= link_to "New Category", new_category_path(current_user)
                 %li= link_to "New Payment Method", new_payment_method_path(current_user)
                 %li.divider{role: "separator"}
+                %li= link_to "View Profile", profile_user_path(current_user)
+                %li.divider{role: "separator"}
                 %li= link_to "Logout", destroy_user_session_path, method: :delete
         - else
           %li= link_to "Log In", user_session_path
