@@ -1,0 +1,8 @@
+%h3 Payment Methods
+
+- @payment_methods.each do |payment_method|
+  .col-md-12
+    %span.col-md-11.label-font
+      = link_to payment_method.name.titleize, edit_payment_method_path(current_user.id, payment_method.id)
+    %span.col-md-1
+      = link_to fa_icon("trash-o", class: "fa-2x"), payment_method_path(current_user, payment_method.id), method: :delete, data: {confirm: "Are you sure?"}
