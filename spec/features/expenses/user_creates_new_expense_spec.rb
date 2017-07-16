@@ -23,6 +23,7 @@ describe 'User creates new expense' do
       submit_form
 
       expect(page).to have_content(user.grand_total)
+      click_link "MAY"
       expect(page).to have_content("Beer")
       expect(page).to have_content("May 29, 2017")
       expect(page).to have_content("Cash")
