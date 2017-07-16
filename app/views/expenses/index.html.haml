@@ -2,9 +2,9 @@
   .col-md-12
     - month_names.each do |month|
       %span.col-md-1
-        = link_to month.upcase, expenses_path(month: month)
+        = link_to month.upcase, expenses_path(month: month, year: Date.current.year)
     .text-center.grand-total
-      %p= number_to_currency(@grand_total)
+      %p= number_to_currency(@monthly_total)
 
   = render 'expenses'
   .text-center= paginate @expenses

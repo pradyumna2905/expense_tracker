@@ -16,10 +16,11 @@ class ExpensesController < ApplicationController
   end
 
   def index
-    @expenses = current_user.expenses.by_month(params[:month],
+    _expenses = current_user.expenses.by_month(params[:month],
                                                params[:year]).
-      includes(:payment_method, :category).page(params[:page])
-    @grand_total = current_user.grand_total
+      includes(:payment_method, :category)
+    @monthly_total = _expenses.total
+    @expenses = Kaminari.paginate_array(_expenses).page(params[:page])
   end
 
   def edit
