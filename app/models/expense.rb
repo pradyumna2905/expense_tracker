@@ -23,6 +23,10 @@ class Expense < ApplicationRecord
       where(date: start_date(month, year)..end_date(month, year)).desc
     end
 
+    def total
+      sum(:amount)
+    end
+
     private
     def start_date(month, year)
       _month_index = month_index(month)
