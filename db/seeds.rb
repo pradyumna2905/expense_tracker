@@ -20,8 +20,8 @@ end
 end
 
 # Generate current week's data
-100.times do
-  [*1..11].each do |month_number|
+[*1..11].each do |month_number|
+  50.times do
     user.expenses.create(date: Faker::Date.between(month_number.months.ago, (month_number-1).months.ago),
                         amount: Faker::Number.decimal(2, 2),
                         payment_method_id: user.payment_methods.sample.id,
