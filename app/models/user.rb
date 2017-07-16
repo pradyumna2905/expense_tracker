@@ -28,27 +28,7 @@ class User < ApplicationRecord
     self.payment_methods.default
   end
 
-  def monthly_expenses(month, year)
-    month_index = month_index(month)
-
-    start_date = start_date(month_index, year)
-    end_date = start_date.end_of_month
-
-    expenses.where(date: start_date..end_date)
-  end
-
   private
-
-  # TODO move these from here in utilities or do something about them asap.
-  def month_index(month)
-    index = Date::MONTHNAMES.index { |month_name| month_name =~ /month/i }
-    binding.pry
-    (index.present? && index.is_a?(Integer)) ? index : Date.current.month
-  end
-
-  def start_date(month_index, year)
-    Date.new(year, month_index, 1)
-  end
 
   def create_default_payment_method
     # Safety sanity check
