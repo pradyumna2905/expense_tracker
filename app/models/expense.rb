@@ -20,7 +20,7 @@ class Expense < ApplicationRecord
 
   class << self
     def by_month(month, year)
-      where(date: start_date(month, year)..end_date(month, year))
+      where(date: start_date(month, year)..end_date(month, year)).desc
     end
 
     private
