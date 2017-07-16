@@ -1,4 +1,5 @@
 class Expense < ApplicationRecord
+  SANITZED_YEARS = [*5.years.ago.year..Date.current.year].freeze
   # ============================== ASSOCIATIONS =============================
   belongs_to :user
   belongs_to :payment_method
@@ -16,6 +17,34 @@ class Expense < ApplicationRecord
 
   accepts_nested_attributes_for :payment_method
   accepts_nested_attributes_for :category
+
+  class << self
+    def by_month(month, year)
+      where(date: start_date(month, year)..end_date(month, year))
+    end
+
+    private
+    def start_date(month, year)
+      _month_index = month_index(month)
+      _year = sanitize_year(year)
+
+      Date.new(_year, _month_index, 1)
+    end
+
+    def end_date(month, year)
+      start_date(month, year).end_of_month
+    end
+
+    def month_index(month)
+      Date::MONTHNAMES.index { |month_name| month_name&.
+                              casecmp(month ||
+                                      Date.current.strftime("%B")) == 0 }
+    end
+
+    def sanitize_year(year)
+      SANITZED_YEARS.include?(year.to_i) ? year.to_i : Date.current.year
+    end
+  end
 
   def future_expense
     # Dont allow future expenses for now
