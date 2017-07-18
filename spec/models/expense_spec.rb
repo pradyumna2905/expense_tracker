@@ -48,7 +48,7 @@ RSpec.describe Expense, type: :model do
                                     user: user,
                                     date: 1.month.ago)
 
-        expect(user.expenses.by_month(nil, nil)).
+        expect(user.expenses.by_month("Mayy", nil)).
           to include current_month_expense
         expect(user.expenses.by_month(nil, nil)).
           to_not include prev_month_expense

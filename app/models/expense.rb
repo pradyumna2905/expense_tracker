@@ -40,9 +40,13 @@ class Expense < ApplicationRecord
     end
 
     def month_index(month)
-      Date::MONTHNAMES.index { |month_name| month_name&.
-                              casecmp(month ||
-                                      Date.current.strftime("%B")) == 0 }
+      if Date::MONTHNAMES.compact.map(&:downcase).include?(month.to_s.downcase)
+        Date::MONTHNAMES.index do |month_name|
+          month_name&.downcase == month.to_s.downcase
+        end
+      else
+        Date.current.month
+      end
     end
 
     def sanitize_year(year)
