@@ -1,10 +1,10 @@
 .col-md-10.col-md-offset-1
-  .col-md-12
+  .col-md-12.month-list-container
     - month_names.each do |month|
-      %span.col-md-1
-        = active_month_link(month)
-    .text-center.grand-total
-      %p= number_to_currency(@monthly_total)
+      %span.col-md-1.month-list
+        %p= active_month_link(month)
+  .text-center.grand-total
+    %p= number_to_currency(@monthly_total)
 
   = render 'expenses'
   .text-center= paginate @expenses

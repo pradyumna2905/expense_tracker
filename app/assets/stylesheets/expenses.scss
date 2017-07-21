@@ -4,7 +4,41 @@
 
 // Variables
 $grand_total: 32px;
+$nav-link-color: #777;
+$focus-nav-link-color: #5e5e5e;
+$active-nav-link-color: #337ab7;
 
 .grand-total > p {
   font-size: $grand_total;
+}
+
+.month-list {
+  a {
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: none;
+      border-bottom: 2px solid $nav-link-color;
+      color: $focus-nav-link-color;
+      font-weight: 1000;
+    }
+  }
+}
+
+.month-link {
+  color: $nav-link-color;
+  font-size: 14px;
+  font-weight: 600;
+  padding-bottom: 5px;
+
+  &.active {
+    text-decoration: none;
+    color: $active-nav-link-color;
+    font-weight: bold;
+    font-size: 16px;
+  }
+}
+
+.month-list-container {
+  margin-bottom: 15px;;
 }

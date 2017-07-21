@@ -3,7 +3,7 @@ module ExpensesHelper
     active_link_to month.upcase,
       expenses_path(month: month, year: Date.current.year),
       active: active_month,
-      class_active: 'active-link',
+      class: 'month-link'
   end
 
   def active_month
