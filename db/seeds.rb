@@ -18,12 +18,10 @@ payment_methods.each do |pm|
 end
 
 # Create categories
-8.times do
-  user.categories.create(title: ["Utilities",
-                                 "Grocery",
-                                 "Dining",
-                                 "Travel"].sample
-                        )
+categories = ["Utilities", "Grocery", "Dining", "Travel"]
+
+categories.each do |category|
+  user.categories.create(title: category)
 end
 
 # Generate current months's data
