@@ -11,32 +11,31 @@ user = User.create(email: 'test@example.com',
                    password: 'password')
 
 # Create some payment methods
-5.times do
-  user.payment_methods.create(name: Faker::Bank.name.upcase)
+payment_methods = ["Chase", "Bank of America", "Amex", "Discover"]
+
+payment_methods.each do |pm|
+  user.payment_methods.create(name: pm)
 end
 
+# Create categories
 8.times do
-  user.categories.create(title: Faker::Color.color_name.upcase)
+  user.categories.create(title: ["Utilities",
+                                 "Grocery",
+                                 "Dining",
+                                 "Travel"].sample
+                        )
 end
 
-# Generate current week's data
-100.times do
-  user.expenses.create(date: Faker::Date.between(Date.today, 1.week.ago),
-                       amount: Faker::Number.decimal(2, 2),
-                       payment_method_id: user.payment_methods.sample.id,
-                       category_id: user.categories.sample.id,
-                       description: [Faker::HarryPotter.quote,
-                                     Faker::HarryPotter.book].sample
-                      )
+# Generate current months's data
+[*1..11].each do |month_number|
+  50.times do
+    user.expenses.create(date: Faker::Date.between(month_number.months.ago, (month_number-1).months.ago),
+                        amount: Faker::Number.decimal(2, 2),
+                        payment_method_id: user.payment_methods.sample.id,
+                        category_id: user.categories.sample.id,
+                        description: [Faker::HarryPotter.quote,
+                                      Faker::HarryPotter.book].sample
+                        )
+  end
 end
 
-# Generate current month's expenses
-100.times do
-  user.expenses.create(date: Faker::Date.between(Date.today, 1.year.ago),
-                       amount: Faker::Number.decimal(2, 2),
-                       payment_method_id: user.payment_methods.sample.id,
-                       category_id: user.categories.sample.id,
-                       description: [Faker::HarryPotter.quote,
-                                     Faker::HarryPotter.book].sample
-                      )
-end

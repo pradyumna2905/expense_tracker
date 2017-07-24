@@ -21,8 +21,9 @@ describe 'User creates new expense' do
       expect(page).to have_select("expense_category_id", options: ["Uncategorized"])
       expect(page).to have_select("expense_payment_method_id", options: ["Cash"])
       submit_form
+      click_link "MAY"
 
-      expect(page).to have_content(user.grand_total)
+      expect(page).to have_content("$10.00")
       expect(page).to have_content("Beer")
       expect(page).to have_content("May 29, 2017")
       expect(page).to have_content("Cash")

@@ -89,6 +89,16 @@ RSpec.describe ExpensesController, type: :controller do
         expect(assigns(:expenses)).to(
              eq([expense_today, expense_old, expense_oldest]))
       end
+
+      it 'sets the total for the expenses' do
+        user = create_and_sign_in_user
+        create(:expense, user: user, amount: 15, date: Date.current)
+        create(:expense, user: user, amount: 30, date: Date.current)
+        create(:expense, amount: 100, user: user, date: 1.month.ago)
+        get :index
+
+        expect(assigns(:monthly_total)).to eq 45
+      end
     end
 
     context 'when signed out' do
