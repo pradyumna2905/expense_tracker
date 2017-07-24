@@ -8,9 +8,6 @@ RSpec.describe PaymentMethod, type: :model do
 
   describe '.monthly_expenses' do
     it 'returns expenses for the current month' do
-      user = create(:user)
-      current_month = create(:expense, date: 2.days.ago, user: user)
-      prev_month = create(:expense, date: 2.months.ago, user: user)
     end
   end
 end

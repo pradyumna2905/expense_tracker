@@ -92,12 +92,9 @@ RSpec.describe ExpensesController, type: :controller do
 
       it 'sets the total for the expenses' do
         user = create_and_sign_in_user
-        expense1 = create(:expense, user: user, amount: 15, date: Date.current)
-        expense2 = create(:expense, user: user, amount: 30, date: Date.current)
-        prev_month_expense = create(:expense,
-                                    amount: 100,
-                                    user: user,
-                                    date: 1.month.ago)
+        create(:expense, user: user, amount: 15, date: Date.current)
+        create(:expense, user: user, amount: 30, date: Date.current)
+        create(:expense, amount: 100, user: user, date: 1.month.ago)
         get :index
 
         expect(assigns(:monthly_total)).to eq 45

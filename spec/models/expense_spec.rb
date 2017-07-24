@@ -59,12 +59,9 @@ RSpec.describe Expense, type: :model do
   describe '.total' do
     it 'returns the total amount for the expenses' do
       user = create(:user)
-      expense1 = create(:expense, user: user, amount: 15, date: Date.current)
-      expense2 = create(:expense, user: user, amount: 30, date: Date.current)
-      prev_month_expense = create(:expense,
-                                  amount: 100,
-                                  user: user,
-                                  date: 1.month.ago)
+      create(:expense, user: user, amount: 15, date: Date.current)
+      create(:expense, user: user, amount: 30, date: Date.current)
+      create(:expense, amount: 100, user: user, date: 1.month.ago)
 
       expect(user.expenses.by_month(nil, nil).total).to eq 45
     end
