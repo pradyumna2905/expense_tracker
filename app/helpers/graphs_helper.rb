@@ -4,7 +4,7 @@ module GraphsHelper
     # figure out a better way to do this. But works for now.
     expenses.group_by_day_of_month(:date,
                                    range: Date.current.beginning_of_month..
-                                          Date.today
+                                          Date.current
                                   ).sum(:amount)
   end
 
