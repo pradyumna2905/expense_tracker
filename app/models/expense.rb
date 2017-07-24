@@ -23,6 +23,10 @@ class Expense < ApplicationRecord
       where(date: start_date(month, year)..end_date(month, year)).desc
     end
 
+    def current_month
+      by_month(Date.current, Date.current.year)
+    end
+
     def total
       sum(:amount)
     end

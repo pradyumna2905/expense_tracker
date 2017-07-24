@@ -9,10 +9,10 @@ module GraphsHelper
   end
 
   def payment_method_pie(payment_methods)
-    payment_methods.weekly_expense_report.sum(:amount)
+    payment_methods.monthly_expenses.sum(:amount)
   end
 
   def categories_pie(categories)
-    categories.weekly_expense_report.sum(:amount)
+    categories.monthly_expenses.sum(:amount)
   end
 end
