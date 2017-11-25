@@ -35,7 +35,7 @@ end
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5'
-  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+  gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'faker', github: 'stympy/faker'
   gem 'simplecov', require: false
