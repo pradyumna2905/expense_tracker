@@ -12,8 +12,8 @@
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %ul.nav.navbar-nav.navbar-right
-            %li= navbar_link_to "New Expense", new_expense_path
-            %li= navbar_link_to "View Expenses", expenses_path
+            %li= navbar_link_to "New Transaction", new_transaction_path
+            %li= navbar_link_to "View Transactions", transactions_path
             %li.dropdown
               %a.dropdown-toggle{href: "#", role: "button", data: {toggle: "dropdown"}, aria: {haspopup: "true", expanded: "false"}}
                 = current_user.email

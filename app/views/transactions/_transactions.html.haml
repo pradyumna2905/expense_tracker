@@ -1,0 +1,20 @@
+%table.table.table-striped
+  %thead
+    %th.col-md-1 Date
+    %th.col-md-3 Description
+    %th.col-md-2 Amount
+    %th.col-md-2 Category
+    %th.col-md-3 Payment Method
+    %th.col-md-1 Actions
+
+  %tbody
+    - @transactions.each do |transaction|
+      %tr
+        %td= formatted_date(transaction.date)
+        %td= transaction.description
+        %td= number_to_currency(transaction.amount)
+        %td= transaction.category.title
+        %td= transaction.payment_method.name
+        %td
+          %span.col-md-6= link_to fa_icon("pencil-square-o", class: "fa-2x"), edit_transaction_path(transaction)
+          %span.col-md-6= link_to fa_icon("trash-o", class: "fa-2x"), transaction, method: :delete, data: {confirm: "Are you sure?"}

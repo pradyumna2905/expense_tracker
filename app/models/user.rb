@@ -5,11 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   # Associations
-  has_many :expenses, dependent: :destroy
+  has_many :transactions, dependent: :destroy
   has_many :payment_methods, dependent: :destroy
   has_many :categories, dependent: :destroy
 
-  accepts_nested_attributes_for :expenses
+  accepts_nested_attributes_for :transactions
 
   after_create do
     create_default_payment_method
@@ -17,7 +17,7 @@ class User < ApplicationRecord
   end
 
   def grand_total
-    self.expenses.sum(:amount)
+    self.transactions.sum(:amount)
   end
 
   def default_category

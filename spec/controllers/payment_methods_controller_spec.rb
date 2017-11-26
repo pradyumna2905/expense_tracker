@@ -47,12 +47,12 @@ RSpec.describe PaymentMethodsController, type: :controller do
                    payment_method: attributes_for(:payment_method,
                                                   user: user) }
 
-        expect(response).to redirect_to new_expense_path
+        expect(response).to redirect_to new_transaction_path
       end
     end
 
     context 'with invalid params' do
-      it 'does not creates an expense record' do
+      it 'does not create transaction record' do
         user = create_and_sign_in_user
         expect { post :create, params:
                  { id: user.id,
@@ -105,7 +105,7 @@ RSpec.describe PaymentMethodsController, type: :controller do
 
   describe '#update' do
     context 'with valid params' do
-      it 'creates an expense record' do
+      it 'creates transaction record' do
         user = create_and_sign_in_user
         payment_method = create(:payment_method, user: user)
 
@@ -122,14 +122,14 @@ RSpec.describe PaymentMethodsController, type: :controller do
     end
 
     context 'with invalid params' do
-      it 'does not creates an expense record' do
+      it 'does not creates transaction record' do
         user = create_and_sign_in_user
         payment_method = create(:payment_method, name: "Old", user: user)
 
         put :update, params: { id: user.id,
                                payment_method_id: payment_method.id,
                                payment_method: attributes_for(
-                                 :expense,
+                                 :transaction,
                                   user: user,
                                   name: ""
         ) }
@@ -151,18 +151,18 @@ RSpec.describe PaymentMethodsController, type: :controller do
       to change(PaymentMethod, :count).by -1
     end
 
-    it 'sets expense related expense payment method as the default payment method' do
+    it 'sets transaction related transaction payment method as the default payment method' do
       user = create_and_sign_in_user
       payment_method = create(:payment_method, name: "Old", user: user)
-      expense = create(:expense, user: user, payment_method: payment_method)
+      transaction = create(:transaction, user: user, payment_method: payment_method)
 
       delete :destroy, params: { id: user.id,
                                  payment_method_id: payment_method.id }
 
-      payment_method_expenses = user.expenses.where(
+      payment_method_transactions = user.transactions.where(
         payment_method_id: payment_method.id
       )
-      expect(payment_method_expenses).to eq []
+      expect(payment_method_transactions).to eq []
     end
   end
 

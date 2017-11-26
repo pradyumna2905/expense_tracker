@@ -9,7 +9,7 @@ class PaymentMethodsController < ApplicationController
     @payment_method = current_user.payment_methods.build(payment_method_params)
 
     if @payment_method.save
-      redirect_to new_expense_path
+      redirect_to new_transaction_path
     else
       render :new
     end
@@ -30,7 +30,7 @@ class PaymentMethodsController < ApplicationController
 
   def destroy
     payment_method = PaymentMethod.find(params[:payment_method_id])
-    sync_expenses(payment_method)
+    sync_transactions(payment_method)
     payment_method.destroy
     redirect_to profile_user_path(current_user)
   end
@@ -40,10 +40,10 @@ class PaymentMethodsController < ApplicationController
     params.require(:payment_method).permit(:name)
   end
 
-  def sync_expenses(payment_method)
-    current_user.expenses.each do |expense|
-      if expense.payment_method_id == payment_method.id
-        expense.update_attributes!(
+  def sync_transactions(payment_method)
+    current_user.transactions.each do |transaction|
+      if transaction.payment_method_id == payment_method.id
+        transaction.update_attributes!(
           payment_method_id: current_user.payment_methods.default.first.id
         )
       end

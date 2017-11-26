@@ -19,5 +19,6 @@ Rails.application.routes.draw do
     get :current
     get :trends
   end
-  resources :expenses
+
+  resources :transactions
 end

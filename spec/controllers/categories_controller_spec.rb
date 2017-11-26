@@ -47,12 +47,12 @@ RSpec.describe CategoriesController, type: :controller do
                    category: attributes_for(:category,
                                             user: user) }
 
-        expect(response).to redirect_to new_expense_path
+        expect(response).to redirect_to new_transaction_path
       end
     end
 
     context 'with invalid params' do
-      it 'does not creates an expense record' do
+      it 'does not creates a transaction record' do
         user = create_and_sign_in_user
         expect { post :create, params:
                  { id: user.id,
@@ -105,7 +105,7 @@ RSpec.describe CategoriesController, type: :controller do
 
   describe '#update' do
     context 'with valid params' do
-      it 'creates an expense record' do
+      it 'creates a transaction record' do
         user = create_and_sign_in_user
         category = create(:category, user: user)
 
@@ -122,14 +122,14 @@ RSpec.describe CategoriesController, type: :controller do
     end
 
     context 'with invalid params' do
-      it 'does not creates an expense record' do
+      it 'does not creates a transaction record' do
         user = create_and_sign_in_user
         category = create(:category, title: "Old", user: user)
 
         put :update, params: { id: user.id,
                                category_id: category.id,
                                category: attributes_for(
-                                 :expense,
+                                 :transaction,
                                   user: user,
                                   title: ""
         ) }
@@ -151,18 +151,18 @@ RSpec.describe CategoriesController, type: :controller do
       to change(Category, :count).by -1
     end
 
-    it 'sets expense related expense payment method as the default payment method' do
+    it 'sets transaction related transaction payment method as the default payment method' do
       user = create_and_sign_in_user
       category = create(:category, title: "Old", user: user)
-      expense = create(:expense, user: user, category: category)
+      transaction = create(:transaction, user: user, category: category)
 
       delete :destroy, params: { id: user.id,
                                  category_id: category.id }
 
-      category_expenses = user.expenses.where(
+      category_transactions = user.transactions.where(
         category_id: category.id
       )
-      expect(category_expenses).to eq []
+      expect(category_transactions).to eq []
     end
   end
 

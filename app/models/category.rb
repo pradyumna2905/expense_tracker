@@ -4,7 +4,7 @@ class Category < ApplicationRecord
   scope :default, -> { where(title: DEFAULT_CATEGORY) }
 
   belongs_to :user
-  has_many :expenses
+  has_many :transactions
 
   validates_presence_of :title
 
@@ -13,9 +13,9 @@ class Category < ApplicationRecord
   end
 
   class << self
-    def monthly_expenses
-      group(:title).joins(:expenses).
-        where("expenses.date >= ?", Date.current.beginning_of_month)
+    def monthly_transactions
+      group(:title).joins(:transactions).
+        where("transactions.date >= ?", Date.current.beginning_of_month)
     end
   end
 end

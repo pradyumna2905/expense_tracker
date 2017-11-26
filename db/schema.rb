@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170704160537) do
+ActiveRecord::Schema.define(version: 20171126015727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,20 @@ ActiveRecord::Schema.define(version: 20170704160537) do
     t.index ["user_id"], name: "index_payment_methods_on_user_id", using: :btree
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.datetime "date"
+    t.decimal  "amount"
+    t.string   "description"
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.integer  "payment_method_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["category_id"], name: "index_transactions_on_category_id", using: :btree
+    t.index ["payment_method_id"], name: "index_transactions_on_payment_method_id", using: :btree
+    t.index ["user_id"], name: "index_transactions_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -67,4 +81,7 @@ ActiveRecord::Schema.define(version: 20170704160537) do
   add_foreign_key "expenses", "payment_methods"
   add_foreign_key "expenses", "users"
   add_foreign_key "payment_methods", "users"
+  add_foreign_key "transactions", "categories"
+  add_foreign_key "transactions", "payment_methods"
+  add_foreign_key "transactions", "users"
 end
