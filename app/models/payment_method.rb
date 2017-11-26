@@ -4,7 +4,7 @@ class PaymentMethod < ApplicationRecord
   scope :default, -> { where(name: DEFAULT_PAYMENT_METHOD) }
 
   belongs_to :user
-  has_many :expenses
+  has_many :transactions
 
   validates_presence_of :name
 
@@ -13,9 +13,9 @@ class PaymentMethod < ApplicationRecord
   end
 
   class << self
-    def monthly_expenses
-      group(:name).joins(:expenses).
-        where("expenses.date >= ?", Date.current.beginning_of_month)
+    def monthly_transactions
+      group(:name).joins(:transactions).
+        where("transactions.date >= ?", Date.current.beginning_of_month)
     end
   end
 end

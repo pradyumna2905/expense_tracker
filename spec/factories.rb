@@ -14,7 +14,7 @@ FactoryGirl.define do
     password 'password'
   end
 
-  factory :expense do
+  factory :transaction do
     user
     date { Date.today }
     description { 'Beer' }

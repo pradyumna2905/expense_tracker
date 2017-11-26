@@ -1,8 +1,8 @@
 .graph-container.col-md-8.col-md-offset-2
-  %h1.text-center= "#{Date.current.strftime('%B %Y')} Expenses"
-  %h1.text-center= number_to_currency(@expenses.current_month.total)
+  %h1.text-center= "#{Date.current.strftime('%B %Y')} Transactions"
+  %h1.text-center= number_to_currency(@transactions.current_month.total)
 
-  = render 'month_expense_graph'
+  = render 'month_transaction_graph'
 
 .graph-container.col-md-5.col-md-offset-1
   %h1.text-center By Payment Method

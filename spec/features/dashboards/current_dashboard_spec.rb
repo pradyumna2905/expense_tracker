@@ -8,23 +8,23 @@ describe 'User visits current dashboard' do
   end
 
   # TODO
-  context 'when user has no expenses for the past week' do
-    xit 'displays no-expense message' do
+  context 'when user has no transactions for the past week' do
+    xit 'displays no-transactions message' do
       expect(page).to have_content "CURRENT"
 
       click_link "CURRENT"
-      expect(page).to have_content "#{Date.current.strftime('%B %Y')} Expenses"
+      expect(page).to have_content "#{Date.current.strftime('%B %Y')} transactions"
       expect(page).
-        to have_content "You do not have any expenses in the past week. Yay!"
+        to have_content "You do not have any transactions in the past week. Yay!"
     end
   end
 
-  context 'when the user has expenses' do
+  context 'when the user has transactions' do
     it 'displays the line chart and pie chart' do
       expect(page).to have_content "CURRENT"
 
       click_link "CURRENT"
-      expect(page).to have_content "#{Date.current.strftime('%B %Y')} Expenses"
+      expect(page).to have_content "#{Date.current.strftime('%B %Y')} Transactions"
 
       # Chartkick squentially ids charts. So this is the line chart.
       expect(page).to have_css('div#chart-1')

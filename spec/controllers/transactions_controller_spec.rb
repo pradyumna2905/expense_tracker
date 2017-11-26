@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ExpensesController, type: :controller do
+RSpec.describe TransactionsController, type: :controller do
   describe '#new' do
     context 'when signed in' do
       it 'renders new page' do
@@ -31,34 +31,34 @@ RSpec.describe ExpensesController, type: :controller do
   describe '#create' do
     context 'with valid params' do
       let(:user) { create_and_sign_in_user }
-      it 'creates an expense record' do
+      it 'creates transaction record' do
         expect { post :create, params:
-                 { expense: attributes_for(:expense, user: user) } }.
-                 to change(Expense, :count).by 1
+                 { transaction: attributes_for(:transaction, user: user) } }.
+                 to change(Transaction, :count).by 1
 
       end
 
       it 'redirects to index page' do
-        post :create, params: { expense: attributes_for(:expense,
+        post :create, params: { transaction: attributes_for(:transaction,
                                                         user: user) }
 
-        expect(response).to redirect_to expenses_path
+        expect(response).to redirect_to transactions_path
       end
     end
 
     context 'with invalid params' do
       let(:user) { create_and_sign_in_user }
-      it 'does not creates an expense record' do
+      it 'does not creates transaction record' do
         expect { post :create, params:
-                 { expense: attributes_for(:expense,
+                 { transaction: attributes_for(:transaction,
                                            user: user,
                                            date: Date.tomorrow) } }.
-                 to_not change(Expense, :count)
+                 to_not change(Transaction, :count)
 
       end
 
       it 'renders the new template' do
-        post :create, params: { expense: attributes_for(:expense,
+        post :create, params: { transaction: attributes_for(:transaction,
                                                         amount: nil,
                                                         user: user) }
 
@@ -78,23 +78,23 @@ RSpec.describe ExpensesController, type: :controller do
 
       it 'displays all the transactions in desc order' do
         user = create_and_sign_in_user
-        expense_today = create(:expense, user: user,
+        transaction_today = create(:transaction, user: user,
                                date: Date.today)
-        expense_oldest = create(:expense, user: user,
+        transaction_oldest = create(:transaction, user: user,
                                 date: 4.days.ago)
-        expense_old = create(:expense, user: user,
+        transaction_old = create(:transaction, user: user,
                                date: Date.yesterday)
         get :index
 
-        expect(assigns(:expenses)).to(
-             eq([expense_today, expense_old, expense_oldest]))
+        expect(assigns(:transactions)).to(
+             eq([transaction_today, transaction_old, transaction_oldest]))
       end
 
-      it 'sets the total for the expenses' do
+      it 'sets the total for the transactions' do
         user = create_and_sign_in_user
-        create(:expense, user: user, amount: 15, date: Date.current)
-        create(:expense, user: user, amount: 30, date: Date.current)
-        create(:expense, amount: 100, user: user, date: 1.month.ago)
+        create(:transaction, user: user, amount: 15, date: Date.current)
+        create(:transaction, user: user, amount: 30, date: Date.current)
+        create(:transaction, amount: 100, user: user, date: 1.month.ago)
         get :index
 
         expect(assigns(:monthly_total)).to eq 45
@@ -121,11 +121,11 @@ RSpec.describe ExpensesController, type: :controller do
     context 'when signed in' do
       it 'renders edit page' do
         user = create_and_sign_in_user
-        expense = create(:expense, user: user)
-        get :edit, params: { id: expense.id }
+        transaction = create(:transaction, user: user)
+        get :edit, params: { id: transaction.id }
 
         expect(response).to render_template :edit
-        expect(assigns(:expense)).to eq expense
+        expect(assigns(:transaction)).to eq transaction
       end
     end
 
@@ -147,31 +147,31 @@ RSpec.describe ExpensesController, type: :controller do
 
   describe '#update' do
     context 'with valid params' do
-      it 'creates an expense record' do
+      it 'creates a transaction record' do
         user = create_and_sign_in_user
-        expense = create(:expense, user: user)
+        transaction = create(:transaction, user: user)
 
-        put :update, params: { id: expense.id,
-                               expense: attributes_for(:expense,
+        put :update, params: { id: transaction.id,
+                               transaction: attributes_for(:transaction,
                                                        user: user,
                                                        description: "New") }
 
-        expect(expense.reload.description).to eq "New"
-        expect(response).to redirect_to expenses_path
+        expect(transaction.reload.description).to eq "New"
+        expect(response).to redirect_to transaction_path
       end
     end
 
     context 'with invalid params' do
-      it 'does not creates an expense record' do
+      it 'does not creates transaction record' do
         user = create_and_sign_in_user
-        expense = create(:expense, description: "Old", user: user)
+        transaction = create(:transaction, description: "Old", user: user)
 
-        put :update, params: { id: expense.id,
-                               expense: attributes_for(:expense,
+        put :update, params: { id: transaction.id,
+                               transaction: attributes_for(:transaction,
                                                        user: user,
                                                        description: "") }
 
-        expect(expense.reload.description).to eq "Old"
+        expect(transaction.reload.description).to eq "Old"
         expect(response).to render_template :edit
       end
     end
@@ -180,19 +180,19 @@ RSpec.describe ExpensesController, type: :controller do
   describe '#destroy' do
     it 'finds the right record' do
       user = create_and_sign_in_user
-      expense = create(:expense, description: "Old", user: user)
-      delete :destroy, params: { id: expense.id }
+      transaction = create(:transaction, description: "Old", user: user)
+      delete :destroy, params: { id: transaction.id }
 
-      expect(assigns(:expense)).to eq expense
+      expect(assigns(:transaction)).to eq transaction
     end
 
     it 'deletes the right record' do
       user = create_and_sign_in_user
-      expense = create(:expense, description: "Old", user: user)
+      transaction = create(:transaction, description: "Old", user: user)
 
       expect { delete :destroy,
-               params: { id: expense.id } }.
-      to change(Expense, :count).by -1
+               params: { id: transaction.id } }.
+      to change(Transaction, :count).by -1
     end
   end
 

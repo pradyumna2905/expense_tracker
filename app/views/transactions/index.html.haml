@@ -6,5 +6,5 @@
   .text-center.grand-total
     %p= number_to_currency(@monthly_total)
 
-  = render 'expenses'
-  .text-center= paginate @expenses
+  = render 'transactions'
+  .text-center= paginate @transactions

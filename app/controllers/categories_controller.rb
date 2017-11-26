@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
     @category = current_user.categories.build(category_params)
 
     if @category.save
-      redirect_to new_expense_path
+      redirect_to new_transaction_path
     else
       render :new
     end
@@ -30,7 +30,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     category = Category.find(params[:category_id])
-    sync_expenses(category)
+    sync_transactions(category)
     category.destroy
     redirect_to profile_user_path(current_user)
   end
@@ -41,10 +41,10 @@ class CategoriesController < ApplicationController
     params.require(:category).permit(:title)
   end
 
-  def sync_expenses(category)
-    current_user.expenses.each do |expense|
-      if expense.category == category
-        expense.update_attributes!(
+  def sync_transactions(category)
+    current_user.transactions.each do |transaction|
+      if transaction.category == category
+        transaction.update_attributes!(
           category_id: current_user.categories.default.first.id
         )
       end
