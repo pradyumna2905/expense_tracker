@@ -1,5 +1,4 @@
 module SessionHelpers
-  include FormHelpers
   def sign_in(user)
     visit root_path
     click_link "Log in"
